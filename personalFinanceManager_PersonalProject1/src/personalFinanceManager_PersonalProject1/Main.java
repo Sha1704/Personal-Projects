@@ -6,6 +6,7 @@
  */
 package personalFinanceManager_PersonalProject1;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,6 +26,8 @@ public class Main
 	{
 		try
 		{
+			
+		ArrayList<Expense> A1 = new ArrayList<>();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Personal Finance Manager!");
@@ -47,15 +50,15 @@ public class Main
 			{
 				if (input == 1)
 				{
-					// add expense method (expense class)
+					// add expense method (expense class) add the expense to l1
 				}
 				else if (input == 2)
 				{
-					//view expense method (expense class)
+					//view expense method (expense class) loop through l1 and call view expenses for all
 				}
 				else if (input == 3)
 				{
-					//calculate total spending (expense class)
+					//calculate total spending (expense class) go through l1 and calculate total spending
 				}
 			}
 		}

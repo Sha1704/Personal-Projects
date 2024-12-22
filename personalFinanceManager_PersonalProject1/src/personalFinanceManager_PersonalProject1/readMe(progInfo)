@@ -1,0 +1,89 @@
+Personal Finance Manager
+
+Description
+The Personal Finance Manager is a simple console-based Java application 
+designed to help users track their expenses, calculate total spending, and 
+categorize expenses. This beginner-friendly project is perfect for learning the 
+fundamentals of Java while solving a real-world problem.
+
+---------------------------------------------------------------------------------------------
+
+Features
+- Add Expense: Log individual expenses with date, category, and amount.
+- View Expenses: Display all recorded expenses in a tabular format.
+- Calculate Total Spending: Compute the total amount spent across all expenses.
+- Categorize Spending: Summarize spending by category (e.g., Food, Rent, Entertainment).
+
+---------------------------------------------------------------------------------------------
+
+Technology Stack
+- Programming Language: Java
+- Data Structures:
+  - ArrayList for managing expenses.
+  - HashMap for categorizing and summarizing spending.
+- File I/O (Optional): Save and load expenses from a local file.
+
+---------------------------------------------------------------------------------------------
+
+Prerequisites
+- Java Development Kit (JDK) version 8 or above.
+- A code editor or IDE such as IntelliJ IDEA, Eclipse, or VS Code.
+- Basic understanding of Java syntax and object-oriented programming.
+
+---------------------------------------------------------------------------------------------
+
+ Usage
+1. Run the application and follow the on-screen prompts to:
+   - Add a new expense.
+   - View all expenses in a formatted list.
+   - Calculate the total amount spent.
+   - Get a breakdown of spending by category.
+   
+2. Example Interaction:
+   
+   Welcome to the Personal Finance Manager!
+   1. Add Expense
+   2. View Expenses
+   3. Calculate Total Spending
+   4. Exit
+   Choose an option: 1
+   
+   Enter Date (YYYY-MM-DD): 2024-12-01
+   Enter Category: Food
+   Enter Amount: 15.50
+   Expense Added!
+
+----------------------------------------------------------------------------------------------
+
+ Project Structure
+- Main.java: The entry point of the application, handles the main logic and user 
+interaction.
+- Expense.java: Represents an individual expense with attributes for date, category, 
+and amount.
+- data/expenses.txt (Optional): A file to store expenses for persistence.
+
+----------------------------------------------------------------------------------------------
+
+ Future Enhancements
+- Sorting: Add functionality to sort expenses by date, category, or amount.
+- Filters: Enable filtering expenses by date range or category.
+- Data Persistence: Save and load data automatically using a file or database.
+- Graphical User Interface: Transition from console-based to a GUI application using 
+JavaFX.
+
+----------------------------------------------------------------------------------------------
+
+ Contribution
+Contributions are welcome! Feel free to open issues or submit pull requests to enhance 
+the application.
+
+----------------------------------------------------------------------------------------------
+
+ License
+This project is open-source.
+
+----------------------------------------------------------------------------------------------
+
+## Author
+Adiboshi Shalom (https://github.com/sha1704)  
+Email: shalomadiboshi01@gmail.com
