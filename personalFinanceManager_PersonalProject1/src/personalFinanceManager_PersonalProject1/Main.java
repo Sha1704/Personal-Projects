@@ -27,7 +27,7 @@ public class Main
 		try
 		{
 			
-		ArrayList<Expense> A1 = new ArrayList<>();
+		ArrayList<Expense> a1 = new ArrayList<>();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Personal Finance Manager!");
@@ -35,10 +35,6 @@ public class Main
 		showMenu();
 		int input = scan.nextInt();
 		
-		while (!scan.hasNextInt())
-		{
-			System.out.println("Please enter a number");
-		}
 		while (input != 4)
 		{
 			if (input < 1 || input > 4)
@@ -50,7 +46,22 @@ public class Main
 			{
 				if (input == 1)
 				{
-					// add expense method (expense class) add the expense to l1
+					System.out.println("Enter Date (YYYY-MM-DD): ");
+					String date = scan.nextLine();
+					scan.next();
+					System.out.println("Enter Category: ");
+					String category = scan.nextLine();
+					scan.next();
+					System.out.println("Enter Amount: ");
+					double amount = scan.nextDouble();
+					
+					Expense e1 = new Expense(date, category, amount);
+					
+					a1.add(e1);
+					System.out.println("Expense added!");
+					
+					showMenu();
+					input = scan.nextInt();
 				}
 				else if (input == 2)
 				{

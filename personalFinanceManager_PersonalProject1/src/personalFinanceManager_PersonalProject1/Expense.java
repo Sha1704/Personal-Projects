@@ -54,6 +54,7 @@ public class Expense
 	
 	public void calculateSpending()
 	{
+		System.out.println();
 		// to be implemented
 	}
 	
