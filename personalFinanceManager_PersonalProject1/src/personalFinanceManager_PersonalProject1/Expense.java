@@ -7,7 +7,7 @@
 package personalFinanceManager_PersonalProject1;
 
 /**
- * <insert class description here>
+ * <This class has all the most important code (in my opinion)>
  *
  * @author <Adiboshi Shalom;
  *
@@ -47,19 +47,13 @@ public class Expense
 		this.amount = amount;
 	}
 	
-	public void displayExpenses()
+	public String toString()
 	{
-		//to be implemented
-	}
-	
-	public void calculateSpending()
-	{
+		String str = "";
+		System.out.println("Date: " + getDate());
+		System.out.println("Category: " + getCategory());
+		System.out.printf("Amount: $%.2f", getAmount());
 		System.out.println();
-		// to be implemented
-	}
-	
-	public void categorizeSpending()
-	{
-		// to be implemented
+		return str;
 	}
 }

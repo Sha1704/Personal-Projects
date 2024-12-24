@@ -46,12 +46,13 @@ public class Main
 			{
 				if (input == 1)
 				{
+					
 					System.out.println("Enter Date (YYYY-MM-DD): ");
-					String date = scan.nextLine();
-					scan.next();
+					String date = scan.next();
+					
 					System.out.println("Enter Category: ");
-					String category = scan.nextLine();
-					scan.next();
+					String category = scan.next();
+					
 					System.out.println("Enter Amount: ");
 					double amount = scan.nextDouble();
 					
@@ -63,14 +64,32 @@ public class Main
 					showMenu();
 					input = scan.nextInt();
 				}
-				else if (input == 2)
+				else if (input == 2) // make this a table format with hashmap
 				{
-					//view expense method (expense class) loop through l1 and call view expenses for all
+					if (a1.size() == 0)
+					{
+						System.out.println("There are no expenses to view!");
+					}
+					for (int i =0; i<a1.size(); i++)
+					{
+						System.out.println(a1.get(i).toString());
+					}
+					
+					showMenu();
+					input = scan.nextInt();
 				}
 				else if (input == 3)
-				{
-					//calculate total spending (expense class) go through l1 and calculate total spending
-				}
+				{ 
+					double total = 0;
+					for (int i =0; i<a1.size(); i++)
+					{
+						total += a1.get(i).getAmount();
+					}
+					System.out.printf("Your total expense is: $%.2f", total);
+					System.out.println();					
+					showMenu();
+					input = scan.nextInt();
+				} // add categorize spending
 			}
 		}
 		System.out.println("Thank you for using the personal finance manager!");
@@ -83,6 +102,7 @@ public class Main
 	
 	public static void showMenu()
 	{
+		System.out.println();
 		System.out.println("Please choose one of the following options");
 		System.out.println("1. Add Expense");
 		System.out.println("2. View Expenses");
