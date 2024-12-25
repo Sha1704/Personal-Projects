@@ -26,91 +26,88 @@ public class Main
 	{
 		try
 		{
-			
-		ArrayList<Expense> a1 = new ArrayList<>();
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("Welcome to the Personal Finance Manager!");
-		
-		showMenu();
-		int input = scan.nextInt();
-		
-		while (input != 4)
-		{
-			if (input < 1 || input > 4)
+
+			ArrayList<Expense> a1 = new ArrayList<>();
+			Scanner scan = new Scanner(System.in);
+
+			System.out.println("Welcome to the Personal Finance Manager!");
+
+			showMenu();
+			int input = scan.nextInt();
+
+			while (input != 4)
 			{
-				System.out.println("Please enter a number between 1-4: ");
-				input = scan.nextInt();
-			}
-			else
-			{
-				if (input == 1)
+				if (input < 1 || input > 4)
 				{
-					
-					System.out.println("Enter Date (YYYY-MM-DD): ");
-					String date = scan.next();
-					
-					System.out.println("Enter Category: ");
-					String category = scan.next();
-					
-					System.out.println("Enter Amount: ");
-					double amount = scan.nextDouble();
-					
-					Expense e1 = new Expense(date, category, amount);
-					
-					a1.add(e1);
-					System.out.println("Expense added!");
-					
-					showMenu();
+					System.out.println("Please enter a number between 1-4: ");
 					input = scan.nextInt();
-				}
-				else if (input == 2)
+				} else
 				{
-					if (a1.size() == 0)
+					if (input == 1)
 					{
-						System.out.println("There are no expenses to view!");
-					}
-					else
+						System.out.println("Enter Date (YYYY-MM-DD): ");
+						String date = scan.next();
+
+						System.out.println("Enter Category: ");
+						String category = scan.next();
+
+						System.out.println("Enter Amount: ");
+						double amount = scan.nextDouble();
+
+						Expense e1 = new Expense(date, category, amount);
+
+						a1.add(e1);
+						System.out.println("Expense added!");
+
+						showMenu();
+						input = scan.nextInt();
+					} else if (input == 2)
 					{
-						System.out.println("Here are your expenses...");
-						System.out.printf("-------------------------------------%n");
-						System.out.printf("             Expenses %n");
-						System.out.printf("-------------------------------------%n");
-						System.out.printf("%-11s %-15s %-15s", "Date", "Category", "Amount");
-						System.out.println();
-						
-						for (int i =0; i<a1.size(); i++)
+						if (a1.size() == 0)
 						{
-							System.out.printf("%-11s %-15s %-15.2f", a1.get(i).getDate(), a1.get(i).getCategory(), a1.get(i).getAmount());
+							System.out.println("There are no expenses to view!");
+						} else
+						{
+							System.out.println("Here are your expenses...");
+							System.out.printf("-------------------------------------%n");
+							System.out.printf("             Expenses %n");
+							System.out.printf("-------------------------------------%n");
+							System.out.printf("%-11s %-15s %-15s", "Date", "Category", "Amount");
 							System.out.println();
+
+							for (int i = 0; i < a1.size(); i++)
+							{
+								System.out.printf("%-11s %-15s %-15.2f", a1.get(i).getDate(), a1.get(i).getCategory(),
+										a1.get(i).getAmount());
+								System.out.println();
+							}
 						}
-					}
-					
-					showMenu();
-					input = scan.nextInt();
-				}
-				else if (input == 3)
-				{ 
-					double total = 0;
-					for (int i =0; i<a1.size(); i++)
+
+						showMenu();
+						input = scan.nextInt();
+					} else if (input == 3)
 					{
-						total += a1.get(i).getAmount();
+						double total = 0;
+						for (int i = 0; i < a1.size(); i++)
+						{
+							total += a1.get(i).getAmount();
+						}
+						System.out.printf("Your total expense is: $%.2f", total);
+						System.out.println();
+						showMenu();
+						input = scan.nextInt();
 					}
-					System.out.printf("Your total expense is: $%.2f", total);
-					System.out.println();					
-					showMenu();
-					input = scan.nextInt();
-				} // add categorize spending with hashmap
+				}
 			}
+			System.out.println("Thank you for using the personal finance manager!");
+		} catch (InputMismatchException e)
+		{
+			System.out.println(
+					"Input Mismatch (you enterd the wrong data-type) please run the program again. Error message: "
+							+ e.getMessage());
 		}
-		System.out.println("Thank you for using the personal finance manager!");
 	}
-	catch (InputMismatchException e)
-	{
-			System.out.println("Input Mismatch (you enterd the wrong data-type) please run the program again. Error message: " + e.getMessage());
-	}
-	}	
-	
+
 	public static void showMenu()
 	{
 		System.out.println();

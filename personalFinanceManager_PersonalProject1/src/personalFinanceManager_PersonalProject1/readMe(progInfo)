@@ -12,7 +12,6 @@ Features
 - Add Expense: Log individual expenses with date, category, and amount.
 - View Expenses: Display all recorded expenses in a tabular format.
 - Calculate Total Spending: Compute the total amount spent across all expenses.
-- Categorize Spending: Summarize spending by category (e.g., Food, Rent, Entertainment).
 
 ---------------------------------------------------------------------------------------------
 
@@ -20,8 +19,7 @@ Technology Stack
 - Programming Language: Java
 - Data Structures:
   - ArrayList for managing expenses.
-  - HashMap for categorizing and summarizing spending.
-- File I/O (Optional): Save and load expenses from a local file.
+- File I/O (Future add-on): Save and load expenses from a local file.
 
 ---------------------------------------------------------------------------------------------
 
@@ -37,7 +35,6 @@ Prerequisites
    - Add a new expense.
    - View all expenses in a formatted list.
    - Calculate the total amount spent.
-   - Get a breakdown of spending by category.
    
 2. Example Interaction:
    
@@ -60,7 +57,7 @@ Prerequisites
 interaction.
 - Expense.java: Represents an individual expense with attributes for date, category, 
 and amount.
-- data/expenses.txt (Optional): A file to store expenses for persistence.
+- data/expenses.txt (Future add-on): A file to store expenses for persistence.
 
 ----------------------------------------------------------------------------------------------
 
@@ -84,6 +81,6 @@ This project is open-source.
 
 ----------------------------------------------------------------------------------------------
 
-## Author
+Author
 Adiboshi Shalom (https://github.com/sha1704)  
 Email: shalomadiboshi01@gmail.com
