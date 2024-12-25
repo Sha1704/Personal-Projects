@@ -64,15 +64,26 @@ public class Main
 					showMenu();
 					input = scan.nextInt();
 				}
-				else if (input == 2) // make this a table format with hashmap
+				else if (input == 2)
 				{
 					if (a1.size() == 0)
 					{
 						System.out.println("There are no expenses to view!");
 					}
-					for (int i =0; i<a1.size(); i++)
+					else
 					{
-						System.out.println(a1.get(i).toString());
+						System.out.println("Here are your expenses...");
+						System.out.printf("-------------------------------------%n");
+						System.out.printf("             Expenses %n");
+						System.out.printf("-------------------------------------%n");
+						System.out.printf("%-11s %-15s %-15s", "Date", "Category", "Amount");
+						System.out.println();
+						
+						for (int i =0; i<a1.size(); i++)
+						{
+							System.out.printf("%-11s %-15s %-15.2f", a1.get(i).getDate(), a1.get(i).getCategory(), a1.get(i).getAmount());
+							System.out.println();
+						}
 					}
 					
 					showMenu();
@@ -89,7 +100,7 @@ public class Main
 					System.out.println();					
 					showMenu();
 					input = scan.nextInt();
-				} // add categorize spending
+				} // add categorize spending with hashmap
 			}
 		}
 		System.out.println("Thank you for using the personal finance manager!");
