@@ -57,8 +57,8 @@ def main():
     os.chdir('C:\\Users\\Shalom\\Desktop\\Git Stuff\\Work\\newspaper_machinelearning code\\Python code')
 
     # Directory to start from (the year)
-    directory = '\\Users\\Shalom\\Desktop\\Git Stuff\\Work\\newspaper_machinelearning\\1920'
-    year = '1920'
+    directory = r'\Users\Shalom\Desktop\Git Stuff\Work\newspaper_machinelearning\2005'
+    year = '2005'
 
     # Open the word count text file in write mode
     with open(f'{year} word_count.txt', 'w') as output_file:
