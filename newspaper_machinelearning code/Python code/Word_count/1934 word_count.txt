@@ -1,0 +1,215 @@
+Month: October
+Issue: Oct-1
+Oct-1-page-1.txt has 0 words
+Oct-1-page-2.txt has 92 words
+Oct-1-page-3.txt has 1546 words
+Oct-1-page-4.txt has 3121 words
+Oct-1-page-5.txt has 3197 words
+Oct-1-page-6.txt has 2643 words
+Oct-1-page-7.txt has 1664 words
+Issue: Oct-10
+Oct-10-page-1.txt has 1174 words
+Oct-10-page-2.txt has 3957 words
+Oct-10-page-3.txt has 479 words
+Oct-10-page-4.txt has 1679 words
+Oct-10-page-5.txt has 1324 words
+Oct-10-page-6.txt has 2796 words
+Issue: Oct-11
+Oct-11-page-1.txt has 1357 words
+Oct-11-page-2.txt has 2664 words
+Oct-11-page-3.txt has 810 words
+Oct-11-page-4.txt has 1895 words
+Oct-11-page-5.txt has 2491 words
+Oct-11-page-6.txt has 1278 words
+Oct-11-page-7.txt has 635 words
+Oct-11-page-8.txt has 3506 words
+Issue: Oct-12
+Oct-12-page-1.txt has 816 words
+Oct-12-page-10.txt has 4021 words
+Oct-12-page-2.txt has 3819 words
+Oct-12-page-3.txt has 1207 words
+Oct-12-page-4.txt has 1290 words
+Oct-12-page-5.txt has 1911 words
+Oct-12-page-6.txt has 655 words
+Oct-12-page-7.txt has 1306 words
+Oct-12-page-8.txt has 461 words
+Oct-12-page-9.txt has 683 words
+Issue: Oct-13
+Oct-13-page-1.txt has 630 words
+Oct-13-page-2.txt has 3348 words
+Oct-13-page-3.txt has 2979 words
+Oct-13-page-4.txt has 1666 words
+Oct-13-page-5.txt has 3524 words
+Oct-13-page-6.txt has 2755 words
+Issue: Oct-15
+Oct-15-page-1.txt has 3585 words
+Oct-15-page-2.txt has 2635 words
+Oct-15-page-3.txt has 1998 words
+Oct-15-page-4.txt has 1424 words
+Oct-15-page-5.txt has 1932 words
+Oct-15-page-6.txt has 3015 words
+Issue: Oct-16
+Oct-16-page-1.txt has 2250 words
+Oct-16-page-2.txt has 3287 words
+Oct-16-page-3.txt has 2247 words
+Oct-16-page-4.txt has 2631 words
+Oct-16-page-5.txt has 1272 words
+Oct-16-page-6.txt has 1215 words
+Oct-16-page-7.txt has 2514 words
+Oct-16-page-8.txt has 2848 words
+Issue: Oct-17
+Oct-17-page-1.txt has 2351 words
+Oct-17-page-2.txt has 2817 words
+Oct-17-page-3.txt has 658 words
+Oct-17-page-4.txt has 2948 words
+Oct-17-page-5.txt has 1844 words
+Oct-17-page-6.txt has 3079 words
+Issue: Oct-18
+Oct-18-page-1.txt has 1763 words
+Oct-18-page-2.txt has 2897 words
+Oct-18-page-3.txt has 1937 words
+Oct-18-page-4.txt has 1389 words
+Oct-18-page-5.txt has 1364 words
+Oct-18-page-6.txt has 2364 words
+Oct-18-page-7.txt has 1307 words
+Oct-18-page-8.txt has 1824 words
+Issue: Oct-19
+Oct-19-page-1.txt has 1381 words
+Oct-19-page-2.txt has 2411 words
+Oct-19-page-3.txt has 2641 words
+Oct-19-page-4.txt has 2073 words
+Oct-19-page-5.txt has 4429 words
+Oct-19-page-6.txt has 796 words
+Oct-19-page-7.txt has 2021 words
+Oct-19-page-8.txt has 1220 words
+Oct-19-page-9.txt has 2698 words
+Issue: Oct-2
+Oct-2-page-1.txt has 2898 words
+Oct-2-page-2.txt has 1640 words
+Oct-2-page-3.txt has 814 words
+Oct-2-page-4.txt has 1788 words
+Oct-2-page-5.txt has 907 words
+Oct-2-page-6.txt has 1608 words
+Oct-2-page-7.txt has 2445 words
+Oct-2-page-8.txt has 2973 words
+Issue: Oct-20
+Oct-20-page-1.txt has 1215 words
+Oct-20-page-2.txt has 2596 words
+Oct-20-page-3.txt has 3119 words
+Oct-20-page-4.txt has 2140 words
+Oct-20-page-5.txt has 1648 words
+Oct-20-page-6.txt has 3547 words
+Oct-20-page-7.txt has 3611 words
+Issue: Oct-22
+Oct-22-page-1.txt has 3467 words
+Oct-22-page-2.txt has 3248 words
+Oct-22-page-3.txt has 2577 words
+Oct-22-page-4.txt has 1765 words
+Oct-22-page-5.txt has 2567 words
+Oct-22-page-6.txt has 1956 words
+Issue: Oct-23
+Oct-23-page-1.txt has 2514 words
+Oct-23-page-2.txt has 1906 words
+Oct-23-page-3.txt has 1328 words
+Oct-23-page-4.txt has 3032 words
+Oct-23-page-5.txt has 1140 words
+Oct-23-page-6.txt has 1296 words
+Oct-23-page-7.txt has 919 words
+Oct-23-page-8.txt has 2512 words
+Issue: Oct-24
+Oct-24-page-1.txt has 873 words
+Oct-24-page-2.txt has 2294 words
+Oct-24-page-3.txt has 2490 words
+Oct-24-page-4.txt has 1354 words
+Oct-24-page-5.txt has 1759 words
+Issue: Oct-25
+Oct-25-page-1.txt has 1324 words
+Oct-25-page-2.txt has 1769 words
+Oct-25-page-3.txt has 2326 words
+Oct-25-page-4.txt has 2237 words
+Oct-25-page-5.txt has 3661 words
+Oct-25-page-6.txt has 2856 words
+Issue: Oct-26
+Oct-26-page-1.txt has 3237 words
+Oct-26-page-10.txt has 2055 words
+Oct-26-page-2.txt has 2751 words
+Oct-26-page-3.txt has 2481 words
+Oct-26-page-4.txt has 1148 words
+Oct-26-page-5.txt has 2321 words
+Oct-26-page-6.txt has 2057 words
+Oct-26-page-7.txt has 1007 words
+Oct-26-page-8.txt has 1354 words
+Oct-26-page-9.txt has 2315 words
+Issue: Oct-27
+Oct-27-page-1.txt has 1194 words
+Oct-27-page-2.txt has 3961 words
+Oct-27-page-3.txt has 1969 words
+Oct-27-page-4.txt has 2521 words
+Oct-27-page-5.txt has 2 words
+Oct-27-page-6.txt has 1494 words
+Oct-27-page-7.txt has 2219 words
+Issue: Oct-29
+Oct-29-page-1.txt has 1402 words
+Oct-29-page-2.txt has 2143 words
+Oct-29-page-3.txt has 733 words
+Oct-29-page-4.txt has 1671 words
+Oct-29-page-5.txt has 259 words
+Oct-29-page-6.txt has 1725 words
+Issue: Oct-3
+Oct-3-page-1.txt has 2684 words
+Oct-3-page-2.txt has 2146 words
+Oct-3-page-3.txt has 2026 words
+Oct-3-page-4.txt has 1579 words
+Oct-3-page-5.txt has 2949 words
+Issue: Oct-30
+Oct-30-page-1.txt has 334 words
+Oct-30-page-2.txt has 1770 words
+Oct-30-page-3.txt has 1959 words
+Oct-30-page-4.txt has 1777 words
+Oct-30-page-5.txt has 262 words
+Oct-30-page-6.txt has 1573 words
+Issue: Oct-31
+Oct-31-page-1.txt has 255 words
+Oct-31-page-2.txt has 1545 words
+Oct-31-page-3.txt has 1335 words
+Oct-31-page-4.txt has 1166 words
+Oct-31-page-5.txt has 1065 words
+Oct-31-page-6.txt has 1337 words
+Issue: Oct-4
+Oct-4-page-1.txt has 1611 words
+Oct-4-page-2.txt has 3017 words
+Oct-4-page-3.txt has 993 words
+Oct-4-page-4.txt has 2437 words
+Oct-4-page-5.txt has 1637 words
+Oct-4-page-6.txt has 564 words
+Oct-4-page-7.txt has 861 words
+Oct-4-page-8.txt has 1941 words
+Issue: Oct-5
+Oct-5-page-1.txt has 828 words
+Oct-5-page-2.txt has 1953 words
+Oct-5-page-3.txt has 2960 words
+Oct-5-page-4.txt has 2080 words
+Oct-5-page-5.txt has 876 words
+Oct-5-page-6.txt has 539 words
+Oct-5-page-7.txt has 3948 words
+Issue: Oct-6
+Oct-6-page-1.txt has 3529 words
+Oct-6-page-2.txt has 3040 words
+Oct-6-page-3.txt has 1562 words
+Oct-6-page-4.txt has 2047 words
+Issue: Oct-8
+Oct-8-page-1.txt has 1541 words
+Oct-8-page-2.txt has 2052 words
+Oct-8-page-3.txt has 1056 words
+Oct-8-page-4.txt has 1350 words
+Oct-8-page-5.txt has 35 words
+Oct-8-page-6.txt has 1663 words
+Issue: Oct-9
+Oct-9-page-1.txt has 26 words
+Oct-9-page-2.txt has 1728 words
+Oct-9-page-3.txt has 818 words
+Oct-9-page-4.txt has 1821 words
+Oct-9-page-5.txt has 1264 words
+Oct-9-page-6.txt has 1234 words
+Oct-9-page-7.txt has 4138 words
+
