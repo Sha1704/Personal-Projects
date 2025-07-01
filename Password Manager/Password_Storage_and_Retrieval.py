@@ -1,7 +1,16 @@
 from Security_and_Encryption import Security_and_Encryption as SEC
 import backend_sql as sql
+from dotenv import load_dotenv
+import os
 
-sql_class = sql.Backend('localhost', 'root', 'SQLinjection1.', 'password_manager')
+load_dotenv()
+
+database_host = os.getenv("DB_HOST")
+database_user = os.getenv("DB_USER")
+database_password = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_DATABASE")
+
+sql_class = sql.Backend(database_host, database_user, database_password, database)
 
 class StorageAndRetrieval:
 

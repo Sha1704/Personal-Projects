@@ -3,9 +3,18 @@ import Menus as menu
 from user_management import UserManagement as user
 from Password_Storage_and_Retrieval import StorageAndRetrieval as SnR
 from Extras import Extra
+from dotenv import load_dotenv
+import os
 
-# Enter into field below (port, user, password, schema)
+load_dotenv()
 
+database_host = os.getenv("DB_HOST")
+database_user = os.getenv("DB_USER")
+database_password = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_DATABASE")
+
+# Enter into field below (host, user, password, database)
+sql_class = sql.Backend(database_host, database_user, database_password, database)
 
 sql_class.run_query('use password_manager;')
 
