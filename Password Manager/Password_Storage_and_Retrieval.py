@@ -1,7 +1,7 @@
 from Security_and_Encryption import Security_and_Encryption as SEC
 import backend_sql as sql
 
-sql_class = sql.backend('localhost', 'root', 'SQLinjection1.', 'password_manager')
+sql_class = sql.Backend('localhost', 'root', 'SQLinjection1.', 'password_manager')
 
 class StorageAndRetrieval:
 

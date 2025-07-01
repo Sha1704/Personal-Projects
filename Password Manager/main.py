@@ -1,11 +1,11 @@
-from backend_sql import Backend as sql
+import backend_sql as sql
 import Menus as menu
 from user_management import UserManagement as user
 from Password_Storage_and_Retrieval import StorageAndRetrieval as SnR
 from Extras import Extra
 
 # Enter into field below (port, user, password, schema)
-sql_class = sql.Backend(port, user, password, schema)
+
 
 sql_class.run_query('use password_manager;')
 
@@ -230,5 +230,4 @@ except ValueError as e:
 
 
 '''check for errors in all
-sort out the backend info (password and other stuff should not be public)
 test code'''

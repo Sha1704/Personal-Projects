@@ -1,24 +1,30 @@
 def default_menu():
-    print("Select from the following options:")
-    print("1 - Create new account")
-    print("2 - Login")
-    print("Enter 999 to quit anytime")
-    print("Your choice :- ")
+    str = 'Select from the following options: \n' \
+    '1 - Create new account \n' \
+    '2 - Login \n' \
+    'Enter 999 to quit \n' \
+    'Your choice :- '
+
+    return str
 
 def login_menu():
-    print("Select from the following options:")
-    print("1 - Change master password")
-    print("2 - Add password")
-    print("3 - Get password")
-    print("4 - Get all passwords")
-    print("5 - Update password")
-    print("6 - remove account")
-    print("7 - Delete your account")
-    print("Your choice :- ")
+    string = 'Select from the following options: \n' \
+    '1 - Change master password \n' \
+    '2 - Add password \n' \
+    '3 - Get password \n' \
+    '4 - Get all passwords \n' \
+    '5 - Update password \n' \
+    '6 - remove account \n' \
+    '7 - Delete your account \n' \
+    'Your choice :- '
+
+    return string
 
 def add_password_menu():
-    print("Select from the following options:")
-    print("1 - Generate strong password")
-    print("2 - Use your own password")
-    print("Your choice :- ")
+    menu = 'Select from the following options: \n' \
+    '1 - Generate strong password \n' \
+    '2 - Use your own password \n' \
+    'Your choice :- '
+
+    return menu
 
