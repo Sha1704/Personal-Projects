@@ -3,10 +3,10 @@ To do:
 
 password manager app
 
-main:
-print menu (create new account, login)
-    if login (changeMasterPassword, addPassword, getPassword, getAllPasswords, updatePassword, deletePassword)
-        if addPassword(generateStrongPassword, use your own password)
+debugg
+
+unique username issue (i add a suffix to username but user don't know what the suffix is fix? python lib)
+hash password issue in user management
 
 '''
 
@@ -32,4 +32,8 @@ getAllPasswords(Master_password)
 updatePassword(accountName, newPassword)
 deletePassword(accountName)
 
+main:
+print menu (create new account, login)
+    if login (changeMasterPassword, addPassword, getPassword, getAllPasswords, updatePassword, deletePassword)
+        if addPassword(generateStrongPassword, use your own password)
 '''

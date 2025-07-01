@@ -9,19 +9,25 @@ class Backend():
         self.password = password
         self.database = database
 
-    def run_query(self, query):
+    def run_query(self, query, params = None):
         data_base = None
         cursor = None
 
         try:
             data_base = mysql.connector.connect(host = self.host, user = self.user, password = self.password, database = self.database)
             cursor = data_base.cursor()
-            cursor.execute(query)
+            if params:
+                cursor.execute(query,params)
+            else:
+                cursor.execute(query)
 
             if query.strip().upper().startswith("SELECT"):
                 results = cursor.fetchall()
-                print("Query executed successfully")
-                return results
+                if results != []:
+                    print("Query executed successfully")
+                    return results
+                else:
+                    print('Wrong username or password')
 
             if query.strip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
                 data_base.commit()

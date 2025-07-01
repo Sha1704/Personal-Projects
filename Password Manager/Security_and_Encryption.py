@@ -13,13 +13,6 @@ class Security_and_Encryption():
     def __init__(self, key = None):
         if key:
             self.key = key
-        elif os.path.exists(self.KEY_FILE):
-            with open(self.KEY_FILE, "rb") as f:
-                self.key = f.read()
-        else:
-            self.key = token_bytes(16)
-            with open(self.KEY_FILE, "wb") as f:
-                f.write(self.key)
     
     def encryptData(self, message):
         cipher = AES.new(self.key, AES.MODE_EAX)
@@ -57,6 +50,7 @@ class Security_and_Encryption():
         else:
             return False
         
-    '''def mini_main(self):
-        nonce, ciphertext, tag = self.encryptData(input('Enter message: '))
-        plain_text = self.decryptData(nonce, ciphertext, tag)'''
+    def create_key(self):
+        key = token_bytes(16)
+        return key
+        

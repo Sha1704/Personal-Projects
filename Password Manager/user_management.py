@@ -3,6 +3,7 @@ import random
 import Security_and_Encryption as sec
 from dotenv import load_dotenv
 import os
+import base64
 
 load_dotenv()
 
@@ -12,6 +13,7 @@ database_password = os.getenv("DB_PASSWORD")
 database = os.getenv("DB_DATABASE")
 
 backend = sql.Backend(database_host, database_user, database_password, database)
+security = sec.Security_and_Encryption()
 
 class UserManagement():
 
@@ -42,11 +44,14 @@ class UserManagement():
                 raise Exception("Failed to generate a unique username")
                     
 
-            hashed_password = sec.hash_password(masterPassword)
+            hashed_password = security.hash_password(masterPassword)
 
             query = 'INSERT INTO user (username, master_password_hash, encryption_key) VALUES (%s, %s, %s);'
-            
-            backend.run_query(query, (new_username, hashed_password, None))
+
+            key = security.create_key()
+            encoded_key = base64.b64encode(key).decode('utf-8')
+
+            backend.run_query(query, (new_username, hashed_password, encoded_key))
 
             return True
         except Exception as e:
@@ -60,7 +65,8 @@ class UserManagement():
             result = backend.run_query(username_query, (username,))
             if result:
                 stored_password_hash = result[0][0]
-                if sec.verify_hashed_password(masterPassword, stored_password_hash):
+                #error here
+                if security.verify_hashed_password(masterPassword, stored_password_hash):
                     print('Login successful!')
                     return True
                 else:
@@ -78,8 +84,8 @@ class UserManagement():
             result = backend.run_query(query, (username,))
             if result:
                 stored_hash = result[0][0]
-                if sec.verify_hashed_password(oldPassword, stored_hash):
-                    hashed_password = sec.hash_password(newPassword)
+                if security.verify_hashed_password(oldPassword, stored_hash):
+                    hashed_password = security.hash_password(newPassword)
                     replacement_query = 'UPDATE user SET master_password_hash = %s WHERE username = %s;'
                     backend.run_query(replacement_query, (hashed_password, username))
                     return True
@@ -94,7 +100,7 @@ class UserManagement():
 
         if hashed_pw:
             stored_hash = hashed_pw[0][0]
-            if sec.verify_hashed_password(password, stored_hash):
+            if security.verify_hashed_password(password, stored_hash):
                 query2 = "DELETE FROM user WHERE username = %s;"
                 query3 = "DELETE FROM account_password WHERE username = %s;"
 

@@ -22,8 +22,11 @@ print("Welcome to the password manager!")
 print()
 
 try:
+    login_menu = None
+    password_menu_input = None
+
     default_input = int(input(menu.default_menu()))
-    while default_input or login_menu or password_menu_input != 999:
+    while default_input != 999 and login_menu != 999 and password_menu_input != 999:
         while default_input > 2 or default_input < 1:
             print("Please choose a valid option (1 or 2)")
             print()
@@ -229,9 +232,9 @@ try:
             print()
             default_input = int(input(menu.default_menu()))
 
-        print()
-        print("Thank you for using the password manager.")
-        print("Goodbye!")
+    print()
+    print("Thank you for using the password manager.")
+    print("Goodbye!")
 
 except ValueError as e:
     print("Invalid input. You entered a wrong imput type, please start over.")
