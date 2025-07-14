@@ -33,7 +33,7 @@ try:
             default_input = int(input(menu.default_menu()))
         
         if default_input == 1:
-            username_create_user = input("Enter your username:")
+            username_create_user = str(input("Enter your username:"))
             masterPassword_create_user = input("Enter your Master password:")
             created = user.create_user(username_create_user,masterPassword_create_user)
 
@@ -55,11 +55,10 @@ try:
 
                 login_menu = int(input(menu.login_menu()))
 
-                while login_menu < 1 or login_menu > 7:
+                while login_menu < 1 or login_menu > 7 and login_menu != 999:
                     print("Please choose a valid option (between 1 to 7)")
                     login_menu = int(input(menu.login_menu()))
 
-                print("logged in")
 
                 if login_menu == 1:
                     #change master password
@@ -77,11 +76,15 @@ try:
                         print("unable to change password")
 
 
-                    print()
-                    default_input = int(input(menu.default_menu()))
+
 
                 elif login_menu == 2:
                     #add password
+
+                    url_add_password = ''
+                    notes_add_password_self = ''
+                    notes_add_password = ''
+                    url_add_password = ''
 
                     password_menu_input = int(input(menu.add_password_menu()))
 
@@ -90,7 +93,7 @@ try:
 
                     if password_menu_input == 1:
 
-                        pw_length = int(input("What is the desired length of you password (Enter a number)"))
+                        pw_length = int(input("What is the desired length of you password (Enter a number):- "))
 
                         generated_password = Extra.generate_strong_password(pw_length)
 
@@ -98,18 +101,18 @@ try:
                         print()
 
                         accountName_add_password = input("Enter the name of the account you want to add: ")
-                        personal_username_add_password = input("Enter your username: ")
+                        personal_username_add_password = input("Enter your username (password manager username): ")
                         account_username_add_password = input("Enter the account username/email: ")
 
-                        url_input = input("Do you want to add a url (enter y/n)")
-                        while url_input != 'y' or url_input != 'n':
-                            url_input = input("Enter y/n")
+                        url_input = input("Do you want to add a url (enter y/n) :- ").lower()
+                        while url_input != 'y' and url_input != 'n':
+                            url_input = input("Enter y/n :- ").lower()
                         if url_input == 'y':
                             url_add_password = input("Enter url: ")
 
-                        note_input = input("Do you want to add a note (enter y/n)")
-                        while note_input != 'y' or note_input != 'n':
-                            note_input = input("Enter y/n")
+                        note_input = input("Do you want to add a note (enter y/n) :- ").lower()
+                        while note_input != 'y' and note_input != 'n':
+                            note_input = input("Enter y/n :-").lower()
                         if note_input == 'y':
                             notes_add_password = input("Add note here: ")
 
@@ -226,6 +229,10 @@ try:
 
                     print()
                     default_input = int(input(menu.default_menu()))
+                
+                elif login_menu == 999:
+                    print("Logged out")
+                    break
             else:
                 print("Could not log in")
 

@@ -10,19 +10,33 @@ database_user = os.getenv("DB_USER")
 database_password = os.getenv("DB_PASSWORD")
 database = os.getenv("DB_DATABASE")
 
+sec_class = SEC()
 sql_class = sql.Backend(database_host, database_user, database_password, database)
 
 class StorageAndRetrieval:
 
     def addPassword(self, accountName, personal_username, account_username, password, url = '', notes = ''):
 
-        encrypted_password = SEC.encryptData(password)
+        encrypted_password = sec_class.encryptData(password)
         nonce = encrypted_password[0]
         cipher = encrypted_password[1]
         tag = encrypted_password[2]
 
-        query = 'INSERT INTO account_password (account_name, username, account_username, encrypted_account_password, url, notes, Nonce, Tag) VALUES (%s, %s, %s,%s, %s, %s,%s, %s);'
-        inserted = sql_class.run_query(query, (accountName, personal_username, account_username, cipher, url, notes, nonce, tag))
+        query = '''
+            UPDATE account_password
+            SET account_name = %s,
+                username = %s
+                account_username = %s,
+                encrypted_account_password = %s,
+                url = %s,
+                notes = %s,
+                Nonce = %s,
+                Tag = %s
+            WHERE username = %s
+        '''
+        inserted = sql_class.run_query(query, (
+            accountName, personal_username, account_username, cipher, url, notes, nonce, tag, personal_username
+        ))
 
         if inserted:
             return True
@@ -37,14 +51,14 @@ class StorageAndRetrieval:
         
         if result:
             encrypted_password = result[0][0]
-            decrypted_password = SEC.decryptData(encrypted_password)
+            decrypted_password = sec_class.decryptData(encrypted_password)
             return decrypted_password
         else:
             return None
     
     def getAllPasswords(self, username, master_password):
 
-        master_password_hash = SEC.hash_password(master_password)
+        master_password_hash = sec_class.hash_password(master_password)
         # use query to search for master password hash
         query = "select master_password_hash from user where master_password_hash = %s;"
         database_hash = sql_class.run_query(query, (master_password_hash,))
@@ -53,14 +67,14 @@ class StorageAndRetrieval:
             query2 = "select account_name, encrypted_account_password from account_password where LOWER(username) = %s;"
             encrypted_acc_password = sql_class.run_query(query2, (username.lower(),))
             for account_name, encrypted_pw in encrypted_acc_password:
-                plain_pw = SEC.decryptData(encrypted_pw)
+                plain_pw = sec_class.decryptData(encrypted_pw)
                 print(f'Account Name: {account_name} Password: {plain_pw}')
         else:
             print('master password or username not found')
 
     def updatePassword(self, username, accountName, newPassword):
         
-        new_encrypted_password = SEC.encryptData(newPassword)
+        new_encrypted_password = sec_class.encryptData(newPassword)
         nonce = new_encrypted_password[0]
         cipher = new_encrypted_password[1]
         tag = new_encrypted_password[2]

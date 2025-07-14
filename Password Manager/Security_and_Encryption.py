@@ -13,8 +13,10 @@ class Security_and_Encryption():
     def __init__(self, key = None):
         if key:
             self.key = key
+        else:
+            self.key = self.create_key()
     
-    def encryptData(self, message):
+    def encryptData(self,message):
         cipher = AES.new(self.key, AES.MODE_EAX)
         nonce = cipher.nonce
         ciphertext, tag = cipher.encrypt_and_digest(message.encode('UTF-8'))
@@ -45,7 +47,7 @@ class Security_and_Encryption():
         return hashed_password
     
     def verify_hashed_password(self, user_password, hash_password):
-        if bcrypt.checkpw(password = user_password.encode(), hashed_password = hash_password):
+        if bcrypt.checkpw(password = user_password.encode(), hashed_password = hash_password.encode()):
             return True
         else:
             return False

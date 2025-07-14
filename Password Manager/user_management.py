@@ -48,10 +48,13 @@ class UserManagement():
 
             query = 'INSERT INTO user (username, master_password_hash, encryption_key) VALUES (%s, %s, %s);'
 
+            query2 = 'INSERT INTO account_password (account_name, username, account_username, encrypted_account_password, url, notes, Nonce, Tag) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);'
+
             key = security.create_key()
             encoded_key = base64.b64encode(key).decode('utf-8')
 
             backend.run_query(query, (new_username, hashed_password, encoded_key))
+            backend.run_query(query2, ('null', new_username, 'null', 'null', 'null', 'null', 'null', 'null'))
 
             return True
         except Exception as e:
@@ -65,7 +68,6 @@ class UserManagement():
             result = backend.run_query(username_query, (username,))
             if result:
                 stored_password_hash = result[0][0]
-                #error here
                 if security.verify_hashed_password(masterPassword, stored_password_hash):
                     print('Login successful!')
                     return True

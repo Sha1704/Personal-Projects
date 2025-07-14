@@ -5,8 +5,9 @@ password manager app
 
 debugg
 
-unique username issue (i add a suffix to username but user don't know what the suffix is fix? python lib)
-hash password issue in user management
+unique username issue (i add a suffix to username but user don't know what the suffix is fix? python lib) - fix by asking for username
+
+issue when i add password (with generated password)
 
 '''
 

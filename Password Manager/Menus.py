@@ -2,7 +2,7 @@ def default_menu():
     str = 'Select from the following options: \n' \
     '1 - Create new account \n' \
     '2 - Login \n' \
-    'Enter 999 to quit at anytime \n' \
+    'Enter 999 to quit \n' \
     'Your choice :- '
 
     return str
@@ -16,6 +16,7 @@ def login_menu():
     '5 - Update password \n' \
     '6 - remove account \n' \
     '7 - Delete your account \n' \
+    '999 - log-out \n' \
     'Your choice :- '
 
     return string
