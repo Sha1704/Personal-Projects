@@ -1,0 +1,1 @@
+word_finder2_outfile.txt has 168 words.
