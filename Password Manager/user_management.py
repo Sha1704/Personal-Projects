@@ -25,6 +25,7 @@ class UserManagement():
             random_tag = random.randint(0,5000)
 
             new_username = username + '#' + str(random_tag)
+            print(f'Your new username is {new_username}. Please keep track of this username as you\'ll use this to sign in from now on')
 
             user_list = []
             username_query = 'select username from user;'
@@ -53,19 +54,17 @@ class UserManagement():
             key = security.create_key()
             encoded_key = base64.b64encode(key).decode('utf-8')
 
-            backend.run_query(query, (new_username, hashed_password, encoded_key))
-            backend.run_query(query2, ('null', new_username, 'null', 'null', 'null', 'null', 'null', 'null'))
+            backend.run_query(query, (new_username.lower(), hashed_password, encoded_key))
 
             return True
         except Exception as e:
             print(f"An error occurred: {e}")
         
-
     def log_in(username, masterPassword):
 
         try:
             username_query = 'SELECT master_password_hash FROM user WHERE username = %s;'
-            result = backend.run_query(username_query, (username,))
+            result = backend.run_query(username_query, (username.lower(),))
             if result:
                 stored_password_hash = result[0][0]
                 if security.verify_hashed_password(masterPassword, stored_password_hash):
@@ -78,18 +77,16 @@ class UserManagement():
             print(f"An error occurred: {e}")
             return False
 
-
-
     def changeMasterPassword(username, oldPassword, newPassword):
         try:
             query = 'SELECT master_password_hash FROM user WHERE username = %s;'
-            result = backend.run_query(query, (username,))
+            result = backend.run_query(query, (username.lower(),))
             if result:
                 stored_hash = result[0][0]
                 if security.verify_hashed_password(oldPassword, stored_hash):
                     hashed_password = security.hash_password(newPassword)
                     replacement_query = 'UPDATE user SET master_password_hash = %s WHERE username = %s;'
-                    backend.run_query(replacement_query, (hashed_password, username))
+                    backend.run_query(replacement_query, (hashed_password, username.lower()))
                     return True
             return False
         except Exception as e:
@@ -98,7 +95,7 @@ class UserManagement():
     def nuke_account(username, password):
 
         hash_query = "select master_password_hash from user where username = %s;"
-        hashed_pw = backend.run_query(hash_query, (username,))
+        hashed_pw = backend.run_query(hash_query, (username.lower(),))
 
         if hashed_pw:
             stored_hash = hashed_pw[0][0]
@@ -106,8 +103,8 @@ class UserManagement():
                 query2 = "DELETE FROM user WHERE username = %s;"
                 query3 = "DELETE FROM account_password WHERE username = %s;"
 
-                backend.run_query(query3, (username,))
-                backend.run_query(query2, (username,))
+                backend.run_query(query3, (username.lower(),))
+                backend.run_query(query2, (username.lower(),))
                 return True
             else:
                 print("Username or password not found.")

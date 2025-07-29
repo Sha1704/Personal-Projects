@@ -23,20 +23,10 @@ class StorageAndRetrieval:
         tag = encrypted_password[2]
 
         query = '''
-            UPDATE account_password
-            SET account_name = %s,
-                username = %s
-                account_username = %s,
-                encrypted_account_password = %s,
-                url = %s,
-                notes = %s,
-                Nonce = %s,
-                Tag = %s
-            WHERE username = %s
+           INSERT INTO account_password (account_name, username, account_username, encrypted_account_password, url, notes, Nonce, Tag) 
+           VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
         '''
-        inserted = sql_class.run_query(query, (
-            accountName, personal_username, account_username, cipher, url, notes, nonce, tag, personal_username
-        ))
+        inserted = sql_class.run_query(query, (accountName.lower(), personal_username.lower(), account_username.lower(), cipher, url.lower(), notes.lower(), nonce, tag))
 
         if inserted:
             return True
@@ -47,7 +37,7 @@ class StorageAndRetrieval:
     
         query = 'select encrypted_account_password from account_password where lower(account_name) = %s;'
 
-        result = sql_class.run_query(query, (accountName,))
+        result = sql_class.run_query(query, (accountName.lower(),))
         
         if result:
             encrypted_password = result[0][0]
@@ -79,8 +69,8 @@ class StorageAndRetrieval:
         cipher = new_encrypted_password[1]
         tag = new_encrypted_password[2]
 
-        replacement_query = 'UPDATE account_password SET encrypted_account_password = %s, Nonce = %s, Tag = %s WHERE username = %s AND accountName = %s;'
-        updated = sql_class.run_query(replacement_query, (cipher, nonce, tag, username, accountName))
+        replacement_query = 'UPDATE account_password SET encrypted_account_password = %s, Nonce = %s, Tag = %s WHERE username = LOWER(%s) AND account_Name = LOWER(%s);'
+        updated = sql_class.run_query(replacement_query, (cipher, nonce, tag, username.lower(), accountName.lower()))
 
         if updated:
             return True
@@ -89,7 +79,7 @@ class StorageAndRetrieval:
     
     def removeAccount(self, accountName, username):
        
-        query = "DELETE FROM account_password WHERE LOWER(account_name) = %s and LOWER(username) = %s;"
+        query = "DELETE FROM account_password WHERE account_name = %s and username = %s;"
         deleted = sql_class.run_query(query, (accountName.lower(),username.lower()))
 
         if deleted:
