@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error, ProgrammingError
 
-class Backend():
+class Backend:
 
     def __init__(self, host, user, password, database):
         self.host = host
@@ -27,15 +27,17 @@ class Backend():
                     print("Query executed successfully")
                     return results
                 else:
-                    print('Wrong username or password')
+                    # remove the line below (it's only there for debugging)
+                    print('No results found (Your username or master password could be wrong)')
+                    return False
 
             if query.strip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
                 data_base.commit()
                 print("Query executed successfully")
                 return True
         
-        except ProgrammingError:
-            print('Wrong username or password')
+        except ProgrammingError as pe:
+            print(f'Programing error: {pe}')
             return False
         except Error as e:
             print(f'An error occured: {e}')
