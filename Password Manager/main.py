@@ -33,14 +33,15 @@ def main():
                 print("Goodbye! \n")
                 break
 
-            while default_input not in [1, 2]:
-                print("Please choose a valid option (1 or 2) \n")
+            while default_input not in [1, 2, 3]:
+                print("Please choose a valid option (1, 2 or 3) \n")
                 default_input = int(input(menu.default_menu()))
             
             if default_input == 1:
                 username_create_user = str(input("Enter your username:"))
                 masterPassword_create_user = input("Enter your Master password:")
-                created = user_management_class.create_user(username_create_user,masterPassword_create_user)
+                email_create_user = input('Enter an email (this will be user to recover username in case you loose or forget it): ')
+                created = user_management_class.create_user(username_create_user,masterPassword_create_user, email_create_user)
 
                 if created:
                     print("User created.")
@@ -243,6 +244,10 @@ def main():
                             
                 else:
                     print("Could not log in \n")
+
+            elif default_input == 3:
+                email_recover_username = input('Enter the email used to register your account: ')
+                user_management_class.recover_username(email_recover_username)
                    
     except ValueError as e:
         print("Invalid input. You entered a wrong input type, please start over.")

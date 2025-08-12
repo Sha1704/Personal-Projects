@@ -18,35 +18,43 @@ backend = sql.Backend(database_host, database_user, database_password, database)
 
 class UserManagement:
 
-    def create_user(self, username, masterPassword):
+    def create_user(self, username, masterPassword, email):
 
         try:
-            random_tag = random.randint(0,5000)
 
-            new_username = username + '#' + str(random_tag)
+            email_query = 'SELECT user_email FROM user WHERE user_email = %s'
+            email_exists = backend.run_query(email_query, (email,))
 
-            for _ in range(1000): 
-                random_tag = random.randint(0, 5000)
+            if email_exists:
+                print('The email you entered is already in use')
+                return False
+            else:
+                random_tag = random.randint(0,5000)
+
                 new_username = username + '#' + str(random_tag)
-                username_query = 'select * from user where username = %s;'
-                query_result = backend.run_query(username_query, (new_username,))
-                if not query_result:
-                    break
-                else:
-                    raise Exception("Failed to generate a unique username")
-            
-            print(f'Your new username is {new_username}. Please keep track of this username as you\'ll use this to sign in from now on')
-                    
-            query = 'INSERT INTO user (username, master_password_hash, encryption_key) VALUES (%s, %s, %s);'
 
-            key = self.create_key()
-            security = sec.Security_and_Encryption(key=key)
-            hashed_password = security.hash_password(masterPassword)
-            encoded_key = base64.b64encode(key)
+                for _ in range(1000): 
+                    random_tag = random.randint(0, 5000)
+                    new_username = username + '#' + str(random_tag)
+                    username_query = 'select * from user where username = %s;'
+                    query_result = backend.run_query(username_query, (new_username,))
+                    if not query_result:
+                        break
+                    else:
+                        raise Exception("Failed to generate a unique username")
+                
+                print(f'Your new username is {new_username}. Please keep track of this username as you\'ll use this to sign in from now on')
+                        
+                query = 'INSERT INTO user (username, master_password_hash, encryption_key, user_email) VALUES (%s, %s, %s, %s);'
 
-            backend.run_query(query, (new_username.lower(), hashed_password, encoded_key))
+                key = self.create_key()
+                security = sec.Security_and_Encryption(key=key)
+                hashed_password = security.hash_password(masterPassword)
+                encoded_key = base64.b64encode(key)
 
-            return True
+                backend.run_query(query, (new_username.lower(), hashed_password, encoded_key, email.lower()))
+
+                return True
         except Exception as e:
             print(f"An error occurred: {e}")
         
@@ -118,3 +126,14 @@ class UserManagement:
     def create_key(self):
         key = token_bytes(16)
         return key
+    
+    def recover_username(self, email):
+        query = 'SELECT username FROM user WHERE user_email = %s;'
+        username = backend.run_query(query, (email.lower(),))
+
+        if username:
+            for tuple in username:
+                for name in tuple:
+                    print(f'Your username is {name}')
+        else:
+            print('No results found')

@@ -27,7 +27,7 @@ class Backend:
                     print("Query executed successfully")
                     return results
                 else:
-                    print('No results found (Your username or master password could be wrong)')
+                    print('No results found')
                     return False
 
             if query.strip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
