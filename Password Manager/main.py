@@ -110,10 +110,32 @@ def main():
 
                             if password_menu_input == 1:
 
+                                number = False
+                                special_characters = False
+
                                 pw_length = int(input("What is the desired length of you password (Enter a number):- "))
 
-                                generated_password = extras_class.generate_strong_password(pw_length)
+                                number_input = input('Do you want the password to include numbers? (enter y/n): ').lower()
 
+                                while number_input != 'y' and number_input != 'n':
+                                    number_input= input('Please enter y or n: ')
+
+                                if number_input == 'y':
+                                    number = True
+
+                                special_character_input = input('Do you want the password to include special characters? (enter y/n): ').lower()
+
+                                while special_character_input != 'y' and special_character_input != 'n':
+                                    special_character_input= input('Please enter y or n: ')
+
+                                if special_character_input == 'y':
+                                    special_characters = True
+
+                                generated_password = extras_class.generate_strong_password(pw_length, number, special_characters)
+
+                                while generated_password == False:
+                                    pw_length = int(input('Enter a new password length: '))
+                                    generated_password = extras_class.generate_strong_password(pw_length, number, special_characters)
                                 print(f"Your generated password is {generated_password}")
                                 print()
 
