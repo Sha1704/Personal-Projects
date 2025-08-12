@@ -27,14 +27,20 @@ class Backend:
                     print("Query executed successfully")
                     return results
                 else:
-                    # remove the line below (it's only there for debugging)
                     print('No results found (Your username or master password could be wrong)')
                     return False
 
             if query.strip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
                 data_base.commit()
-                print("Query executed successfully")
-                return True
+                
+                if cursor.rowcount == 0:
+                    return False
+                else:
+                    print("Query executed successfully")
+                    return True
+                    
+            
+                
         
         except ProgrammingError as pe:
             print(f'Programing error: {pe}')

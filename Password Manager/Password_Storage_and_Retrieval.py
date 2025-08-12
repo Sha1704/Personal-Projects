@@ -21,9 +21,10 @@ class StorageAndRetrieval:
         sec_class = SEC(key = key)
 
         encrypted_password = sec_class.encryptData(password)
-        nonce = base64.b64encode(encrypted_password[0])
-        cipher = base64.b64encode(encrypted_password[1])
-        tag = base64.b64encode(encrypted_password[2])
+        nonce = encrypted_password[0].decode('utf-8')
+        cipher = encrypted_password[1].decode('utf-8')
+        tag = encrypted_password[2].decode('utf-8')
+
 
         query = '''
            INSERT INTO account_password (account_name, username, account_username, encrypted_account_password, url, notes, Nonce, Tag) 
@@ -43,9 +44,9 @@ class StorageAndRetrieval:
         result = sql_class.run_query(query, (accountName.lower(),userName.lower()))
         
         if result:
-            cipher = base64.b64decode(result[0][0])
-            nonce = base64.b64decode(result[0][1])
-            tag = base64.b64decode(result[0][2])
+            cipher = result[0][0].strip()
+            nonce = result[0][1].strip()
+            tag = result[0][2].strip()
             sec_class = SEC(key=key)
             decrypted_password = sec_class.decryptData(nonce, cipher, tag, key)
             return decrypted_password
@@ -69,7 +70,7 @@ class StorageAndRetrieval:
                 encrypted_acc_password = sql_class.run_query(query2, (username.lower(),))
                 for account_name, encrypted_pw, nonce, tag in encrypted_acc_password:
                     plain_pw = sec_class.decryptData(nonce, encrypted_pw, tag, key)
-                    print(f'Account Name: {account_name} -- Password: {plain_pw}')
+                    print(f'Account Name: {account_name} \t \t Password: {plain_pw}')
             else:
                 print('Master password incorrect')
         else:
@@ -79,13 +80,13 @@ class StorageAndRetrieval:
 
         sec_class = SEC(key = key)
         
-        new_encrypted_password = sec_class.encryptData(newPassword)
-        nonce = new_encrypted_password[0]
-        cipher = new_encrypted_password[1]
-        tag = new_encrypted_password[2]
+        nonce_b64, cipher_b64, tag_b64 = sec_class.encryptData(newPassword)
+        nonce_str = nonce_b64.decode('utf-8')
+        cipher_str = cipher_b64.decode('utf-8')
+        tag_str = tag_b64.decode('utf-8')
 
         replacement_query = 'UPDATE account_password SET encrypted_account_password = %s, Nonce = %s, Tag = %s WHERE username = %s AND account_Name = %s;'
-        updated = sql_class.run_query(replacement_query, (cipher, nonce, tag, username.lower(), accountName.lower()))
+        updated = sql_class.run_query(replacement_query, (cipher_str, nonce_str, tag_str, username.lower(), accountName.lower()))
 
         if updated:
             return True

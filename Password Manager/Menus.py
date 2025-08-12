@@ -14,8 +14,8 @@ def login_menu():
     '3 - Get password \n' \
     '4 - Get all passwords \n' \
     '5 - Update password \n' \
-    '6 - remove account \n' \
-    '7 - Delete your account \n' \
+    '6 - remove account from password manager \n' \
+    '7 - Delete your password manager account \n' \
     '999 - log-out \n' \
     'Your choice :- '
 
