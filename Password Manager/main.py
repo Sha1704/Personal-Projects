@@ -5,9 +5,21 @@ from Password_Storage_and_Retrieval import StorageAndRetrieval as SnR
 from Extras import Extra
 from dotenv import load_dotenv
 import os
+import sys
+
 
 def main():
-    load_dotenv()
+
+    if getattr(sys, 'frozen', False):
+        # Running from .exe
+        base_path = sys._MEIPASS
+    else:
+        # Running from source
+        base_path = os.path.abspath(".")
+
+    env_path = os.path.join(base_path, "config.env")
+
+    load_dotenv(env_path)
 
     database_host = os.getenv("DB_HOST")
     database_user = os.getenv("DB_USER")
@@ -26,6 +38,7 @@ def main():
 
     try:
         while True:
+            clear_screen()
             default_input = int(input(menu.default_menu()))
 
             if default_input == 999:
@@ -70,6 +83,8 @@ def main():
                 if logged_in:
 
                     while True:
+
+                        clear_screen()
                         login_menu = int(input(menu.login_menu()))
 
                         if login_menu == 999:
@@ -103,6 +118,7 @@ def main():
                             url_add_password_self = ''
                             notes_add_password_self = ''
 
+                            clear_screen()
                             password_menu_input = int(input(menu.add_password_menu()))
 
                             while password_menu_input < 1 or password_menu_input > 2:
@@ -275,6 +291,8 @@ def main():
         print("Invalid input. You entered a wrong input type, please start over.")
         print(e)
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,6 @@ from Security_and_Encryption import Security_and_Encryption as SEC
 import backend_sql as sql
 from dotenv import load_dotenv
 import os
-import base64
 
 load_dotenv()
 
