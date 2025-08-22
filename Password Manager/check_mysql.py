@@ -1,18 +1,29 @@
+import os
+from dotenv import load_dotenv
 import mysql.connector
 
-print("Connector file:", mysql.connector.__file__)
+# Load .env file for database credentials
+load_dotenv("config.env")
 
-plugins = [
-    "mysql.connector.authentication.mysql_native_password",
-    "mysql.connector.authentication.caching_sha2_password",
-    "mysql.connector.authentication.sha256_password",
-    "mysql.connector.authentication.mysql_clear_password",
-    "mysql.connector.authentication.dialog",
-]
+host = os.getenv("DB_HOST")
+user = os.getenv("DB_USER")
+password = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_DATABASE")
 
-for p in plugins:
-    try:
-        __import__(p)
-        print(f"OK: {p}")
-    except Exception as e:
-        print(f"Missing: {p} ({e})")
+print("Testing connection with:")
+print("Host:", host)
+print("User:", user)
+print("Database:", database)
+
+try:
+    # Try to connect to the database
+    conn = mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database
+    )
+    print("Connected successfully!")
+    conn.close()
+except mysql.connector.Error as err:
+    print("Error:", err)

@@ -1,100 +1,110 @@
-🔐 Password Manager
+# 🔐 Password Manager
 
-A secure password manager application built with Python and MySQL. This project enables users to create accounts, securely store, retrieve, update, and delete passwords for multiple accounts, all while ensuring strong encryption and password hashing.
+A secure password manager application built with Python and MySQL.  
+This project enables users to create accounts, securely store, retrieve, update, and delete passwords for multiple accounts, all while ensuring strong encryption and password hashing.  
 
 ---
 
 ## 🧩 Features
 
-- User registration with unique usernames  
-- Master password hashing and verification using bcrypt  
-- AES encryption (EAX mode) for storing account passwords securely  
-- Add, retrieve, update, and remove saved passwords  
-- Generate strong random passwords  
-- Maintain password history with nonces and tags for cryptographic integrity  
-- Backend database management with MySQL
+- 🔑 Secure user registration & login with unique usernames  
+- 🔒 Master password hashing and verification using **bcrypt**  
+- 🛡️ AES encryption (EAX mode) for storing account passwords securely  
+- 🗄️ Add, retrieve, update, and remove saved passwords  
+- 🔄 Password history maintained with nonces and tags for cryptographic integrity  
+- ⚡ Strong random password generation  
+- ☁️ Database integration with **MySQL** (tested with Google Cloud SQL)  
+- 📦 Packaged executable for testing (see `App.zip`)  
 
 ---
 
 ## 📁 File Overview
 
-- `user_management.py` — Handles user account creation, login, password changes, and account deletion  
+- `main.py` — Entry point for running the full password manager  
+- `user_management.py` — User registration, login, password changes, account deletion, and username recovery  
 - `backend_sql.py` — MySQL database connector and query executor  
-- `Security_and_Encryption.py` — Encryption (AES) and hashing (bcrypt) utilities  
-- `Password_Storage_and_Retrieval.py` — Functions to add, get, update, and remove stored passwords  
+- `Security_and_Encryption.py` — AES encryption (PyCryptodome) + bcrypt password hashing utilities  
+- `Password_Storage_and_Retrieval.py` — Add, fetch, update, and remove saved account passwords  
 - `Menus.py` — CLI menu prompts for user interaction  
-- `Extras.py` — Utility to generate strong random passwords  
-- `Password Manager ddl.sql` — SQL script for creating the required database schema  
+- `Extras.py` — Utility for generating strong random passwords  
+- `check_mysql.py` — Simple script to check if MySQL connection works with `.env` settings  
 - `Password manager Logical model.drawio.pdf` — Database ER diagram  
+- `App.zip` — Packaged executable for testing (Windows)  
 - `.gitignore` — Git ignore rules  
 
 ---
 
 ## 🛠️ Technologies Used
 
-- Python 3  
-- MySQL 
-- PyCryptodome (AES encryption)  
-- bcrypt (password hashing)  
-- dotenv (for environment variable management)  
-- Python standard libraries (`random`, `secrets`, etc.)
+- **Python 3**  
+- **MySQL**  
+- **PyCryptodome** (AES encryption)  
+- **bcrypt** (password hashing)  
+- **dotenv** (environment variable management)  
+- Python standard libraries (`random`, `os`, `secrets`, etc.)  
 
 ---
 
 ## ⚙️ Setup Instructions
 
 1. **Clone the repository**  
-2. **Create a MySQL database** using the provided `Password Manager ddl.sql` script:
-   
-```
 
-DROP DATABASE IF EXISTS password manager;
+```bash
+git clone https://github.com/Sha1704/Password-Manager.git
+cd Password-Manager
+Create a MySQL database using the provided schema. Example:
+
+sql
+Copy
+Edit
+DROP DATABASE IF EXISTS password_manager;
 CREATE DATABASE password_manager;
 USE password_manager;
--- Then run the rest of the SQL in the file
 
-```
+-- Then run your own DDL script (see schema used in project)
+Create a .env file in the project root with your database credentials:
 
-3. **Create a `.env` file** in the root folder with your database credentials:
-
-```
-
+ini
+Copy
+Edit
 DB_HOST=your_host
 DB_USER=your_username
 DB_PASSWORD=your_password
 DB_DATABASE=password_manager
+Install dependencies:
 
-````
-4. **Install dependencies** (example using pip):
-
-```bash
+bash
+Copy
+Edit
 pip install pycryptodome bcrypt python-dotenv mysql-connector-python
-````
+Run the application:
 
-5. **Run your Python scripts** to interact with the password manager backend (via CLI or integrate into a UI)
+bash
+Copy
+Edit
+python main.py
+🧑‍💻 Usage Overview
+Run main.py to start the application (menu-driven interface).
 
----
+Use user_management.py to create accounts, log in, recover usernames, or delete accounts.
 
-## 🧑‍💻 Usage Overview
+Use Password_Storage_and_Retrieval.py to add, get, update, or remove saved passwords.
 
-* Use `user_management.py` to create accounts, log in, change passwords, or delete accounts
-* Use `Password_Storage_and_Retrieval.py` to add, get, update, or remove saved passwords for various accounts
-* Use `Extras.py` to generate strong random passwords when adding new entries
-* To run the entire application, simply execute `main.py` to start the program.
-* The system ensures all passwords are encrypted before storage and verifies user identity with hashed master passwords
+Use Extras.py to generate strong random passwords when adding new entries.
 
----
+Use check_mysql.py if you need to verify database connection setup.
 
-## ⚠️ Notes
+All passwords are encrypted before storage, and user identity is verified with hashed master passwords.
 
-* This project focuses on backend logic and security. No frontend UI is included.
-* Always keep your `.env` file private and secure.
-* The code assumes a running MySQL server accessible with your credentials.
-* **Work in progress:** I’m actively working on adding UI/frontend features to make this password manager more user-friendly. Stay tuned!
+⚠️ Notes
+This project currently provides a CLI-based interface — no GUI frontend yet.
 
----
+Always keep your .env file private and secure.
 
-## 👨‍💻 Author
+Requires an accessible MySQL server (local or remote).
 
-**Adiboshi Shalom**
+Packaged executable (App.zip) is included for testers who don’t want to run from source.
+
+👨‍💻 Author
+Adiboshi Shalom
 Feel free to explore, contribute, or ask questions!

@@ -6,6 +6,7 @@ import os
 import base64
 from secrets import token_bytes
 
+# Load environment variables from .env file
 load_dotenv()
 
 database_host = os.getenv("DB_HOST")
@@ -13,15 +14,25 @@ database_user = os.getenv("DB_USER")
 database_password = os.getenv("DB_PASSWORD")
 database = os.getenv("DB_DATABASE")
 
+# Create backend database handler
 backend = sql.Backend(database_host, database_user, database_password, database)
 
-
 class UserManagement:
+    """
+    Handles user account management: creation, login, password changes, and deletion.
+    """
 
     def create_user(self, username, masterPassword, email):
+        """
+        Creates a new user account with a unique username and stores hashed password.
 
+        :param username: Desired username
+        :param masterPassword: User's master password
+        :param email: User's email address
+        :return: True if user created, False otherwise
+        """
         try:
-
+            # Check if email already exists
             email_query = 'SELECT user_email FROM user WHERE user_email = %s'
             email_exists = backend.run_query(email_query, (email,))
 
@@ -29,10 +40,11 @@ class UserManagement:
                 print('The email you entered is already in use')
                 return False
             else:
+                # Generate unique username with random tag
                 random_tag = random.randint(0,5000)
-
                 new_username = username + '#' + str(random_tag)
 
+                # Try to ensure username is unique
                 for _ in range(1000): 
                     random_tag = random.randint(0, 5000)
                     new_username = username + '#' + str(random_tag)
@@ -45,6 +57,7 @@ class UserManagement:
                 
                 print(f'Your new username is {new_username}. Please keep track of this username as you\'ll use this to sign in from now on')
                         
+                # Prepare to insert new user
                 query = 'INSERT INTO user (username, master_password_hash, encryption_key, user_email) VALUES (%s, %s, %s, %s);'
 
                 key = self.create_key()
@@ -59,7 +72,13 @@ class UserManagement:
             print(f"An error occurred: {e}")
         
     def log_in(self, username, masterPassword):
+        """
+        Authenticates a user by verifying the master password.
 
+        :param username: Username to log in
+        :param masterPassword: Master password to verify
+        :return: Tuple (True, encryption_key) if successful, (False, None) otherwise
+        """
         try:
             username_query = 'SELECT master_password_hash FROM user WHERE username = %s;'
             encryption_key_query = 'SELECT encryption_key FROM user WHERE username = %s;'
@@ -82,6 +101,14 @@ class UserManagement:
             return False, None
 
     def changeMasterPassword(self, username, oldPassword, newPassword):
+        """
+        Changes the user's master password after verifying the old password.
+
+        :param username: Username whose password is to be changed
+        :param oldPassword: Current master password
+        :param newPassword: New master password
+        :return: True if password changed, False otherwise
+        """
         try:
             query = 'SELECT master_password_hash, encryption_key FROM user WHERE username = %s;'
             result = backend.run_query(query, (username.lower(),))
@@ -100,7 +127,13 @@ class UserManagement:
             print(f"An error occurred: {e}")
 
     def nuke_account(self, username, password):
+        """
+        Deletes a user account and all associated passwords after verifying credentials.
 
+        :param username: Username to delete
+        :param password: Master password for verification
+        :return: True if account deleted, False otherwise
+        """
         hash_query = "select master_password_hash, encryption_key from user where username = %s;"
         hashed_pw = backend.run_query(hash_query, (username.lower(),))
 
@@ -124,10 +157,20 @@ class UserManagement:
             return False
     
     def create_key(self):
+        """
+        Generates a random 16-byte encryption key.
+
+        :return: Bytes object representing the key
+        """
         key = token_bytes(16)
         return key
     
     def recover_username(self, email):
+        """
+        Recovers and prints the username(s) associated with an email.
+
+        :param email: Email address to search for
+        """
         query = 'SELECT username FROM user WHERE user_email = %s;'
         username = backend.run_query(query, (email.lower(),))
 

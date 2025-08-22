@@ -1,0 +1,5 @@
+pycryptodome
+bcrypt
+python-dotenv
+mysql-connector-python
+pyinstaller

@@ -6,32 +6,37 @@ from Extras import Extra
 from dotenv import load_dotenv
 import os
 import sys
-
+import time
 
 def main():
-
+    """
+    Main function to run the password manager CLI.
+    Handles user input and menu navigation.
+    """
     if getattr(sys, 'frozen', False):
         # Running from .exe
-        base_path = sys._MEIPASS
+        base_path = os.path.dirname(sys.executable)
     else:
         # Running from source
-        base_path = os.path.abspath(".")
+        base_path = os.path.dirname(os.path.abspath(__file__))
 
-    env_path = os.path.join(base_path, "config.env")
+    env_path = os.path.join(base_path, ".env")
 
     load_dotenv(env_path)
 
+    # Load database credentials from environment
     database_host = os.getenv("DB_HOST")
     database_user = os.getenv("DB_USER")
     database_password = os.getenv("DB_PASSWORD")
     database = os.getenv("DB_DATABASE")
-
-    # Enter into field below (host, user, password, database)
+    
+    # Create class instances for database, user management, password storage, and extras
     sql_class = sql.Backend(database_host, database_user, database_password, database)
     user_management_class = user()
     password_Storage_and_Retrieval_class = SnR()
     extras_class = Extra()
 
+    # Ensure correct database is used
     sql_class.run_query('use password_manager;')
 
     print("Welcome to the password manager! \n")
@@ -44,6 +49,7 @@ def main():
             if default_input == 999:
                 print("Thank you for using the password manager. \n")
                 print("Goodbye! \n")
+                time.sleep(2)
                 break
 
             while default_input not in [1, 2, 3]:
@@ -51,6 +57,7 @@ def main():
                 default_input = int(input(menu.default_menu()))
             
             if default_input == 1:
+                # Create new user
                 username_create_user = str(input("Enter your username:"))
                 masterPassword_create_user = input("Enter your Master password:")
                 email_create_user = input('Enter an email (this will be user to recover username in case you loose or forget it): ')
@@ -62,9 +69,8 @@ def main():
                     print("Could not create user")
 
             elif default_input == 2:
-    
+                # Login flow
                 login_menu = None
-                
 
                 username = input("Enter your username:")
                 masterPassword_login = input("Enter your Master password:")
@@ -75,15 +81,13 @@ def main():
                     print(f'Your username or master password is wrong')
                     continue
 
-
                 if not logged_in or key is None:
                     print('Invalid username or password')
                     continue
 
                 if logged_in:
-
+                    # User is logged in, show login menu
                     while True:
-
                         clear_screen()
                         login_menu = int(input(menu.login_menu()))
 
@@ -92,13 +96,11 @@ def main():
                             break
 
                         while login_menu not in range(1, 8):
-                            print("Please choose a valid option (between 1 to 7)")
+                            print("Please choose a valid option (between 1 to 8)")
                             login_menu = int(input(menu.login_menu()))
 
                         if login_menu == 1:
-                            #change master password
-                            #changeMasterPassword(self, username, oldPassword, newPassword)
-                            
+                            # Change master password
                             username_change_master_password = input("Enter your username: ")
                             oldPassword = input("Enter your old password: ")
                             newPassword_change_master_password = input("Enter your new password: ")
@@ -111,8 +113,7 @@ def main():
                                 print("unable to change password")
 
                         elif login_menu == 2:
-                            #add password
-
+                            # Add password
                             url_add_password = ''
                             notes_add_password = ''
                             url_add_password_self = ''
@@ -125,7 +126,7 @@ def main():
                                 password_menu_input = input("Choose a valid option (1 or 2): ")
 
                             if password_menu_input == 1:
-
+                                # Generate strong password
                                 number = False
                                 special_characters = False
 
@@ -179,7 +180,7 @@ def main():
                                     print("Unable to add password")
                                 
                             elif password_menu_input == 2:
-
+                                # Use own password
                                 accountName_add_password_self = input("Enter the name of the account you want to add: ")
                                 account_username_add_password_self = input("Enter the account username/email: ")
                                 password_add_password_self = input("Enter your password: ")
@@ -204,10 +205,8 @@ def main():
                                 else:
                                     print("Unable to add password")
 
-
                         elif login_menu == 3:
-                            #get password
-
+                            # Get password for an account
                             accountName_get_password = input("What account do you want to get the password for? ")
 
                             pw = password_Storage_and_Retrieval_class.getPassword(accountName_get_password, username, key)
@@ -217,11 +216,8 @@ def main():
                             else:
                                 print("Unable got get Password for that account (please check to make sure that that account exists)")
 
-                            
-
                         elif login_menu == 4: 
-                            #get all password
-
+                            # Get all passwords
                             master_password_get_all_password = input("Enter your master password: ")
 
                             print()
@@ -234,8 +230,7 @@ def main():
                            
 
                         elif login_menu == 5:
-                            #update password
-
+                            # Update password for an account
                             accountName_update_password = input("Enter the name of the account you want to update the password of: ")
                             newPassword_update_password =input("Enter the new password: ")
 
@@ -246,10 +241,8 @@ def main():
                             else:
                                 print("Could not update password, account name might be wrong")
 
-
                         elif login_menu == 6:
-                            #delete password
-
+                            # Remove account from password manager
                             accountName_delete_password = input("Enter the name of the account you want to remove: ")
                             username_delete_password = input("Enter your password manager username: ")
                             validate = input(f"Are you sure you want to delete your {accountName_delete_password} account, this action cannot be undone. (enter y/n): ").strip().lower()
@@ -267,8 +260,7 @@ def main():
                           
 
                         elif login_menu == 7:
-                            # nuke account
-
+                            # Delete password manager account (nuke)
                             username_nuke_account = input("Enter your username: ")
                             password_nuke_account = input("Enter your master password: ")
 
@@ -284,6 +276,7 @@ def main():
                     print("Could not log in \n")
 
             elif default_input == 3:
+                # Recover username by email
                 email_recover_username = input('Enter the email used to register your account: ')
                 user_management_class.recover_username(email_recover_username)
                    
@@ -291,7 +284,13 @@ def main():
         print("Invalid input. You entered a wrong input type, please start over.")
         print(e)
 
-def clear_screen():
+def clear_screen(delay_seconds = 1):
+    """
+    Clears the terminal screen after a delay.
+
+    :param delay_seconds: Number of seconds to wait before clearing
+    """
+    time.sleep(delay_seconds)
     os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ == "__main__":

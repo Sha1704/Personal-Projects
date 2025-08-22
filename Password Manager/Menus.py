@@ -1,4 +1,7 @@
 def default_menu():
+    """
+    Returns the default menu string for main options.
+    """
     str = 'Select from the following options: \n' \
     '1 - Create new account \n' \
     '2 - Login \n' \
@@ -9,6 +12,9 @@ def default_menu():
     return str
 
 def login_menu():
+    """
+    Returns the menu string for logged-in user options.
+    """
     string = 'Select from the following options: \n' \
     '1 - Change master password \n' \
     '2 - Add password \n' \
@@ -23,6 +29,9 @@ def login_menu():
     return string
 
 def add_password_menu():
+    """
+    Returns the menu string for adding a password.
+    """
     menu = 'Select from the following options: \n' \
     '1 - Generate strong password \n' \
     '2 - Use your own password \n' \
